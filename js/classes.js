@@ -6,16 +6,21 @@ class Sprite {
     framesMax = 1,
     offset = { x: 0, y: 0 }
   }) {
+    // định vị vị trí của đối tượng sprite trong màn hình
     this.position = position
     this.width = 50
     this.height = 150
+    // đối tượng img giúp hiển thị hình ảnh trên trang web
     this.image = new Image()
     this.image.src = imageSrc
     this.scale = scale
     this.framesMax = framesMax
     this.framesCurrent = 0
+    // tính toán thời gian trôi qua giữa các khung hình
     this.framesElapsed = 0
+    // kiểm soát tốc độ khung hình trò chơi
     this.framesHold = 5
+    // độ lệch của đối tượng Sprite từ position
     this.offset = offset
   }
 
@@ -58,7 +63,7 @@ class Fighter extends Sprite {
     color = 'red',
     imageSrc,
     scale = 1,
-    framesMax = 1,
+    framesMax = 10,
     offset = { x: 0, y: 0 },
     sprites,
     attackBox = { offset: {}, width: undefined, height: undefined }
@@ -71,6 +76,7 @@ class Fighter extends Sprite {
       offset
     })
 
+    // tốc độ của đối tượng Sprite từ position
     this.velocity = velocity
     this.width = 50
     this.height = 150
@@ -104,25 +110,23 @@ class Fighter extends Sprite {
     if (!this.dead) this.animateFrames()
 
     // attack boxes
-    this.attackBox.position.x = this.position.x + this.attackBox.offset.x
-    this.attackBox.position.y = this.position.y + this.attackBox.offset.y
-
-    // draw the attack box
-    // c.fillRect(
-    //   this.attackBox.position.x,
-    //   this.attackBox.position.y,
-    //   this.attackBox.width,
-    //   this.attackBox.height
-    // )
-
+    // Cập nhật vị trí của hộp tấn công của đối tượng
+    // theo vị trí hiện tại của đối tượng cộng với offset của hộp tấn công theo trục x.
+    this.attackBox.position.x = this.position.x
+    this.attackBox.position.y = this.position.y
+    // Cập nhật vị trí của đối tượng theo vận tốc của đối tượng theo trục x.
     this.position.x += this.velocity.x
     this.position.y += this.velocity.y
 
     // gravity function
+    // Kiểm tra xem đối tượng có đang ở trên mặt đất hay không.
     if (this.position.y + this.height + this.velocity.y >= canvas.height - 96) {
       this.velocity.y = 0
       this.position.y = 330
     } else this.velocity.y += gravity
+
+    // Nếu đối tượng chưa chạm mặt đất,
+    // tăng vận tốc của đối tượng theo trục y bằng giá trị của hằng số trọng lực (gravity).
   }
 
   attack() {

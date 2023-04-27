@@ -1,10 +1,4 @@
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-    rel="stylesheet"
-  />
   <style>
     * {
       box-sizing: border-box;
@@ -13,9 +7,9 @@
   </style>
 </head>
 <body>
-  <!-- red container div -->
+  <!-- khối div chứa game -->
   <div style="position: relative; display: inline-block">
-    <!-- smaller red container div -->
+    <!-- khối div chứa thanh máu và thời gian -->
     <div
       style="
         position: absolute;
@@ -25,7 +19,7 @@
         padding: 20px;
       "
     >
-      <!-- player health -->
+      <!-- khối div player health -->
       <div
         style="
           position: relative;
@@ -51,7 +45,7 @@
         ></div>
       </div>
 
-      <!-- timer -->
+      <!-- khối div timer -->
       <div
         id="timer"
         style="
@@ -68,7 +62,7 @@
       >
         10
       </div>
-      <!-- enemy health -->
+      <!-- khối div enemy health -->
       <div
         style="
           position: relative;
@@ -111,14 +105,7 @@
     </div>
     <canvas></canvas>
   </div>
-
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
-    integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  ></script>
-  <script src="js/utils.js"></script>
+  <script src="js/ultil.js"></script>
   <script src="js/classes.js"></script>
   <script src="index.js"></script>
 </body>

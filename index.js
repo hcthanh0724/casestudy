@@ -5,7 +5,7 @@ canvas.width = 1024
 canvas.height = 576
 
 c.fillRect(0, 0, canvas.width, canvas.height)
-
+// tốc độ rơi
 const gravity = 0.7
 
 const background = new Sprite({
@@ -32,10 +32,6 @@ const player = new Fighter({
     y: 0
   },
   velocity: {
-    x: 0,
-    y: 0
-  },
-  offset: {
     x: 0,
     y: 0
   },
@@ -88,7 +84,7 @@ const player = new Fighter({
 
 const enemy = new Fighter({
   position: {
-    x: 400,
+    x: 500,
     y: 100
   },
   velocity: {
@@ -96,15 +92,11 @@ const enemy = new Fighter({
     y: 0
   },
   color: 'blue',
-  offset: {
-    x: -50,
-    y: 0
-  },
   imageSrc: './img/kenji/Idle.png',
   framesMax: 4,
   scale: 2.5,
   offset: {
-    x: 215,
+    x: 115,
     y: 167
   },
   sprites: {
@@ -139,7 +131,7 @@ const enemy = new Fighter({
   },
   attackBox: {
     offset: {
-      x: -170,
+      x: -70,
       y: 50
     },
     width: 170,
@@ -229,9 +221,9 @@ function animate() {
     enemy.takeHit()
     player.isAttacking = false
 
-    gsap.to('#enemyHealth', {
-      width: enemy.health + '%'
-    })
+    // gsap.to('#enemyHealth', {
+    //   width: enemy.health + '%'
+    // })
   }
 
   // if player misses
@@ -251,9 +243,9 @@ function animate() {
     player.takeHit()
     enemy.isAttacking = false
 
-    gsap.to('#playerHealth', {
-      width: player.health + '%'
-    })
+    // gsap.to('#playerHealth', {
+    //   width: player.health + '%'
+    // })
   }
 
   // if player misses
@@ -270,7 +262,7 @@ function animate() {
 animate()
 
 window.addEventListener('keydown', (event) => {
-  if (!player.dead) {
+  if (!player.dead && timer != 0) {
     switch (event.key) {
       case 'd':
         keys.d.pressed = true
@@ -283,13 +275,13 @@ window.addEventListener('keydown', (event) => {
       case 'w':
         player.velocity.y = -20
         break
-      case ' ':
+      case 's':
         player.attack()
         break
     }
   }
 
-  if (!enemy.dead) {
+  if (!enemy.dead && timer != 0) {
     switch (event.key) {
       case 'ArrowRight':
         keys.ArrowRight.pressed = true
